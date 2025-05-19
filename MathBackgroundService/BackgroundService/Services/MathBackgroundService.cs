@@ -1,6 +1,8 @@
-﻿using BackgroundServiceMath.Models;
+﻿using BackgroundServiceMath.Data;
+using BackgroundServiceMath.Models;
 using BackgroundServiceVote.Hubs;
 using Microsoft.AspNetCore.SignalR;
+using Microsoft.EntityFrameworkCore;
 
 namespace BackgroundServiceMath.Services;
 

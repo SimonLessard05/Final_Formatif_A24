@@ -17,7 +17,7 @@ namespace BackgroundServiceMath.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.11");
 
-            modelBuilder.Entity("BackgroundServiceVote.Models.Player", b =>
+            modelBuilder.Entity("BackgroundServiceMath.Models.Player", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -233,7 +233,7 @@ namespace BackgroundServiceMath.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("BackgroundServiceVote.Models.Player", b =>
+            modelBuilder.Entity("BackgroundServiceMath.Models.Player", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
                         .WithMany()

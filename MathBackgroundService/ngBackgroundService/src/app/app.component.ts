@@ -40,8 +40,8 @@ interface PlayerInfoDTO {
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatBadgeModule
-],
+    MatBadgeModule,
+  ],
 })
 export class AppComponent {
   title = 'ngBackgroundService';
@@ -59,7 +59,7 @@ export class AppComponent {
 
   constructor(public account: AccountService, private zone: NgZone) {}
 
-  SelectChoice(choice: number) {
+  selectChoice(choice: number) {
     this.selection = choice;
     this.hubConnection!.invoke('SelectChoice', choice);
   }

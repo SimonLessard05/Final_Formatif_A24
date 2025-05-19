@@ -41,8 +41,8 @@ public class MathQuestionsHub : Hub
         await base.OnDisconnectedAsync(exception);
     }
 
-    public void SelectChoice(int asnwerIndex)
+    public void SelectChoice(int answerIndex)
     {
-        _matchBackgroundService.SelectChoice(Context.UserIdentifier!, asnwerIndex);
+        _matchBackgroundService.SelectChoice(Context.UserIdentifier!, answerIndex);
     }
 }

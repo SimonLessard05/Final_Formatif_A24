@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BackgroundServiceMath.Migrations
 {
     [DbContext(typeof(BackgroundServiceContext))]
-    [Migration("20250519163750_Initial")]
+    [Migration("20250519185609_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -20,7 +20,7 @@ namespace BackgroundServiceMath.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.11");
 
-            modelBuilder.Entity("BackgroundServiceVote.Models.Player", b =>
+            modelBuilder.Entity("BackgroundServiceMath.Models.Player", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -236,7 +236,7 @@ namespace BackgroundServiceMath.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("BackgroundServiceVote.Models.Player", b =>
+            modelBuilder.Entity("BackgroundServiceMath.Models.Player", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
                         .WithMany()
