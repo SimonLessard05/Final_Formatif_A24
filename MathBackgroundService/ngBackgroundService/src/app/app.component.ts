@@ -5,6 +5,12 @@ import { environment } from 'src/environments/environment';
 // On doit commencer par ajouter signalr dans les node_modules: npm install @microsoft/signalr
 // Ensuite on inclut la librairie
 import * as signalR from "@microsoft/signalr"
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { NgIf, NgFor } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
  enum Operation
 {
@@ -26,9 +32,11 @@ interface PlayerInfoDTO{
 }
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css'],
+    standalone: true,
+    imports: [FormsModule, NgIf, MatFormFieldModule, MatInputModule, MatButtonModule, NgFor, MatBadgeModule]
 })
 export class AppComponent {
   title = 'ngBackgroundService';
