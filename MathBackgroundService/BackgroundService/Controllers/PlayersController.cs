@@ -1,22 +1,21 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BackgroundServiceMath.Data;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using BackgroundServiceVote.Data;
 
-namespace BackgroundServiceVote.Controllers
+namespace BackgroundServiceVote.Controllers;
+
+public class PlayersController : Controller
 {
-    public class PlayersController : Controller
+    private readonly BackgroundServiceContext _context;
+
+    public PlayersController(BackgroundServiceContext context)
     {
-        private readonly BackgroundServiceContext _context;
+        _context = context;
+    }
 
-        public PlayersController(BackgroundServiceContext context)
-        {
-            _context = context;
-        }
-
-        public async Task<IActionResult> Index()
-        {
-            var backgroundServiceContext = _context.Player.Include(p => p.User);
-            return View(await backgroundServiceContext.ToListAsync());
-        }
+    public async Task<IActionResult> Index()
+    {
+        var backgroundServiceContext = _context.Player.Include(p => p.User);
+        return View(await backgroundServiceContext.ToListAsync());
     }
 }

@@ -1,12 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace BackgroundServiceVote.DTOs
+namespace BackgroundServiceMath.DTOs;
+
+public class LoginDTO
 {
-    public class LoginDTO
-    {
-        [Required]
-        public String Username { get; set; } = null!;
-        [Required]
-        public String Password { get; set; } = null!;
-    }
+    [Required]
+    public String Username { get; set; } = null!;
+    [Required]
+    public String Password { get; set; } = null!;
 }

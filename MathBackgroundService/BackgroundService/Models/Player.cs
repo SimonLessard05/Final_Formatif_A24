@@ -1,14 +1,13 @@
-﻿using Microsoft.AspNetCore.Identity;
-using System.ComponentModel;
+﻿using System.ComponentModel;
+using Microsoft.AspNetCore.Identity;
 
-namespace BackgroundServiceVote.Models
+namespace BackgroundServiceMath.Models;
+
+public class Player
 {
-    public class Player
-    {
-        public int Id { get; set; }
-        public string UserId { get; set; }
-        [DisplayName("Username")]
-        public IdentityUser User { get; set; }
-        public int NbRightAnswers { get; set; }
-    }
+    public int Id { get; set; }
+    public string UserId { get; set; }
+    [DisplayName("Username")]
+    public IdentityUser User { get; set; }
+    public int NbRightAnswers { get; set; }
 }

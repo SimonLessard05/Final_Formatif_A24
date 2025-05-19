@@ -1,9 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿namespace BackgroundServiceMath.DTOs;
 
-namespace BackgroundServiceVote.DTOs
+public class PlayerInfoDTO
 {
-    public class PlayerInfoDTO
-    {
-        public int NbRightAnswers { get; set; }
-    }
+    public int NbRightAnswers { get; set; }
 }
