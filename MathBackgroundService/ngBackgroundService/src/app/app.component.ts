@@ -9,7 +9,7 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { NgIf, NgFor } from '@angular/common';
+
 import { FormsModule } from '@angular/forms';
 
 enum Operation {
@@ -37,13 +37,11 @@ interface PlayerInfoDTO {
   standalone: true,
   imports: [
     FormsModule,
-    NgIf,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    NgFor,
-    MatBadgeModule,
-  ],
+    MatBadgeModule
+],
 })
 export class AppComponent {
   title = 'ngBackgroundService';
