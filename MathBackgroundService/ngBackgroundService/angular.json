@@ -67,10 +67,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "ngBackgroundService:build:production"
+              "buildTarget": "ngBackgroundService:build:production"
             },
             "development": {
-              "browserTarget": "ngBackgroundService:build:development"
+              "buildTarget": "ngBackgroundService:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -78,7 +78,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ngBackgroundService:build"
+            "buildTarget": "ngBackgroundService:build"
           }
         },
         "test": {
