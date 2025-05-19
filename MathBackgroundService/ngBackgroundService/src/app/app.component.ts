@@ -4,7 +4,7 @@ import { environment } from 'src/environments/environment';
 
 // On doit commencer par ajouter signalr dans les node_modules: npm install @microsoft/signalr
 // Ensuite on inclut la librairie
-import * as signalR from "@microsoft/signalr"
+import * as signalR from '@microsoft/signalr';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
@@ -12,31 +12,38 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { NgIf, NgFor } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
- enum Operation
-{
-    Add,
-    Substract,
-    Multiply
+enum Operation {
+  Add,
+  Substract,
+  Multiply,
 }
 
-interface MathQuestion{
-  operation:Operation;
-  valueA:number;
-  valueB:number;
-  answers:number[];
-  playerChoices:number[];
+interface MathQuestion {
+  operation: Operation;
+  valueA: number;
+  valueB: number;
+  answers: number[];
+  playerChoices: number[];
 }
 
-interface PlayerInfoDTO{
-  nbRightAnswers:number;
+interface PlayerInfoDTO {
+  nbRightAnswers: number;
 }
 
 @Component({
-    selector: 'app-root',
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.css'],
-    standalone: true,
-    imports: [FormsModule, NgIf, MatFormFieldModule, MatInputModule, MatButtonModule, NgFor, MatBadgeModule]
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css'],
+  standalone: true,
+  imports: [
+    FormsModule,
+    NgIf,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    NgFor,
+    MatBadgeModule,
+  ],
 })
 export class AppComponent {
   title = 'ngBackgroundService';
@@ -45,57 +52,56 @@ export class AppComponent {
 
   nbRightAnswers = 0;
 
-  private hubConnection?: signalR.HubConnection
+  private hubConnection?: signalR.HubConnection;
 
   isConnected = false;
   selection = -1;
 
   currentQuestion: MathQuestion | null = null;
 
-  constructor(public account:AccountService, private zone: NgZone){
-  }
+  constructor(public account: AccountService, private zone: NgZone) {}
 
-  SelectChoice(choice:number) {
+  SelectChoice(choice: number) {
     this.selection = choice;
-    this.hubConnection!.invoke('SelectChoice', choice)
+    this.hubConnection!.invoke('SelectChoice', choice);
   }
 
-  async register(){
-    try{
+  async register() {
+    try {
       await this.account.register();
-    }
-    catch(e){
+    } catch (e) {
       alert("Erreur pendant l'enregistrement!!!!!");
       return;
     }
     alert("L'enregistrement a été un succès!");
   }
 
-  async login(){
+  async login() {
     await this.account.login();
   }
 
-  async logout(){
+  async logout() {
     await this.account.logout();
 
-    if(this.hubConnection?.state == signalR.HubConnectionState.Connected)
+    if (this.hubConnection?.state == signalR.HubConnectionState.Connected)
       this.hubConnection.stop();
     this.isConnected = false;
   }
 
-  isLoggedIn() : Boolean{
+  isLoggedIn(): Boolean {
     return this.account.isLoggedIn();
   }
 
   connectToHub() {
     this.hubConnection = new signalR.HubConnectionBuilder()
-                              .withUrl(this.baseUrl + 'game', { accessTokenFactory: () => sessionStorage.getItem("token")! })
-                              .build();
+      .withUrl(this.baseUrl + 'game', {
+        accessTokenFactory: () => sessionStorage.getItem('token')!,
+      })
+      .build();
 
-    if(!this.hubConnection)
-      return;
+    if (!this.hubConnection) return;
 
-    this.hubConnection.on('PlayerInfo', (data:PlayerInfoDTO) => {
+    this.hubConnection.on('PlayerInfo', (data: PlayerInfoDTO) => {
       this.zone.run(() => {
         console.log(data);
         this.isConnected = true;
@@ -103,7 +109,7 @@ export class AppComponent {
       });
     });
 
-    this.hubConnection.on('CurrentQuestion', (data:MathQuestion) => {
+    this.hubConnection.on('CurrentQuestion', (data: MathQuestion) => {
       this.zone.run(() => {
         console.log(data);
         this.selection = -1;
@@ -111,9 +117,9 @@ export class AppComponent {
       });
     });
 
-    this.hubConnection.on('IncreasePlayersChoices', (choiceIndex:number) => {
+    this.hubConnection.on('IncreasePlayersChoices', (choiceIndex: number) => {
       this.zone.run(() => {
-        if(this.currentQuestion){
+        if (this.currentQuestion) {
           this.currentQuestion.playerChoices[choiceIndex]++;
         }
       });
@@ -122,8 +128,8 @@ export class AppComponent {
     this.hubConnection
       .start()
       .then(() => {
-        console.log("Connected to Hub");
+        console.log('Connected to Hub');
       })
-      .catch(err => console.log('Error while starting connection: ' + err))
+      .catch((err) => console.log('Error while starting connection: ' + err));
   }
 }
